@@ -1,0 +1,88 @@
+
+===========================UnifiedRequest===========================
+{
+  "model": "qwen-72b-chat",       // 模型标识（如 gpt-4, claude-3, deepseek-chat）
+  "messages": [                   // 对话历史（兼容OpenAI格式）
+    {"role": "system", "content": "你是一个助手。"},
+    {"role": "user", "content": "你好！"}
+  ],
+  "stream": false,                 // 是否流式输出
+  "parameters": {                 // 生成参数（动态适配不同模型）
+    // 通用参数
+    "max_tokens": 1024,           // 生成长度限制
+    "temperature": 0.7,           // 随机性控制
+    "top_p": 0.9,                 // 核采样
+    // 厂商特有参数
+    "repetition_penalty": 1.1,    // Qwen重复惩罚
+    "use_search": true            // DeepSeek联网搜索
+  },
+  "tools": [                      // 函数调用（兼容OpenAI）
+    {
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "parameters": {"location": "string"}
+      }
+    }
+  ],
+  "multimodal": [                 // 多模态输入（如图片/音频）
+    {"type": "text", "text": "描述图片"},
+    {"type": "image_url", "url": "base64或URL"}
+  ]
+}
+
+===========================UnifiedResponse===========================
+{
+  "id": "chat-123",               // 请求唯一ID
+  "model": "qwen-72b-chat",       // 实际使用的模型
+  "choices": [                    // 生成结果（支持多候选）
+    {
+      "message": {
+        "role": "assistant",
+        "content": "你好！我是AI助手。",
+        "tool_calls": []          // 函数调用请求
+      },
+      "finish_reason": "stop"     // 停止原因（stop/length/tool_calls）
+    }
+  ],
+  "usage": {                      // Token统计
+    "prompt_tokens": 20,
+    "completion_tokens": 30
+  },
+  "latency_ms": 450,              // 耗时（毫秒）
+
+  "extra": {                      // 厂商特有数据
+    "qwen": {                     // Qwen特有
+      "request_id": "req-xyz123"
+    },
+    "deepseek": {                 // DeepSeek特有
+      "search_results": [
+        {"title": "相关内容", "url": "https://..."}
+      ]
+    }
+  }
+}
+
+
+===========================UnifiedError===========================
+{
+  "error": {
+    "code": "rate_limit_exceeded",  // 错误类型
+    "message": "请求频率过高",
+    "details": {                   // 扩展信息
+      "retry_after": 60,           // 重试等待时间（秒）
+      "model": "Qwen"              // 触发的模型
+    }
+  }
+}
+
+==========================UnifiedHistories==========================
+{
+    "user_id": "用户内码、标识",
+    "histories": [
+        {
+            "id": "历史会话内码",
+            "name": "历史会话名称"
+        }
+    ]
+}
