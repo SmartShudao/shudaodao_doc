@@ -2,36 +2,35 @@
 ## 格式
 ```text
 {
-  "success": "true/false"
   "code": 200/400/500,
-  "message": "提示消息",
+  "msg": "提示消息",
   "data": "any",
-  "error": {
-    "type": "错误类型",
-    "details": "any"
+  "error": "any"
+}
+```
+
+## 成功  
+```json
+{
+  "code": 200,
+  "msg": "登录成功",
+  "data": {
+    "key1": "any",
+    "key2": {
+      "children": "any"
+    },
+    "key3": [
+      "any_value1",
+      "any_value2"
+    ]
   }
 }
 ```
 
-## 成功  - 示例
 ```json
 {
-    "success": true,
     "code": 200,
-    "name": "auth_login",
-    "message": "登录成功",
-    "data": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsZl9zaGFvIiwiaWQiOiI5MDgwMjI0NjYxNDI1NzY2NCIsImV4cCI6MTc1ODYyMTY4OX0.CRg4fcSHliNcucd0hojTogIszIOS29SAl2cvoZ_iiaY"
-    }
-}
-```
-
-```json
-{
-    "success": true,
-    "code": 200,
-    "name": "AuthUserResponse",
-    "message": "操作成功",
+    "msg": "操作成功",
     "data": {
         "auth_user_id": 90802246614257664,
         "username": "lf_shao",
@@ -43,10 +42,8 @@
 
 ```json
 {
-    "success": true,
     "code": 200,
-    "name": "Paging",
-    "message": "查询成功",
+    "msg": "查询成功",
     "data": {
         "total": 1,
         "page": 1,
@@ -78,27 +75,23 @@
 }
 ```
 
-## 错误 - 示例
+## 错误 
 
 ```json
 {
-    "success": false,
     "code": 403,
-    "name": "PermissionError (http://localhost:8000/api/v1/shudao_acm/t/staff)",
-    "message": "非法访问，没有权限授权",
+    "msg": "非法访问，没有权限授权",
     "error": "拒绝 -> lf_shao - shudao_acm.t_staff - edit"
 }
 ```
 
 ```json
 {
-    "success": false,
     "code": 422,
-    "name": "RequestValidationError (http://localhost:8000/api/v1/shudao_acm/t/staff)",
-    "message": "验证失败",
+    "msg": "验证失败",
     "error": [
         {
-            "field": "staff_entrydate",
+            "field": "staff_entry_date",
             "message": "输入无效"
         }
     ]
@@ -107,9 +100,7 @@
 
 ```json
 {
-    "success": false,
     "code": 405,
-    "name": "HTTPException (http://localhost:8000/api/v1/shudao_acm/t/staff1)",
     "message": "方法不允许",
     "error": "405: Method Not Allowed"
 }

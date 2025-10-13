@@ -203,12 +203,5 @@ dmypy.json
 #/.idea/*.xml
 #/.idea/*.iml
 
-# 自定义
-test/
-/storage/
-/web/uploads/
-/admin/uploads/
-/models/
-/config/environment.yaml
 
 
