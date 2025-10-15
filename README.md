@@ -18,14 +18,11 @@
 ### 使用 uv 更高效 
 ```text
 1. 初始化 
-uv sync
-
-2. 安装 shudaodao 
-pip install shudaodao
-- 有 .c 文件，需要本地编译，如果编译失败，大概是本地缺少C++编译器，请自行安装
-
+> uv sync
+2. 安装 shudaodao(需要本地编译；如失败，大概是本地缺少C++编译器，请自行安装) 
+> pip install shudaodao
 3. 更新 shudaodao
-pip install --upgrade --index-url https://pypi.org/simple/ shudaodao
+> pip install --upgrade --index-url https://pypi.org/simple/ shudaodao
 ```
 
 ### pyproject.toml
@@ -33,9 +30,13 @@ pip install --upgrade --index-url https://pypi.org/simple/ shudaodao
 dependencies = [
     "uvicorn>=0.35.0",
 ]
+# 修改 uv 的 index url 指向清华源
+[[tool.uv.index]]
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/"
+default = true
 ```
 - 原则上只需要 uvicorn + pip install shudaodao
-- 多余部分其实是 shudaodao 的依赖
+- 开发环境建议把shudaodao的依赖，直接加到pyproject.toml
 - 因为有时 要从 pypi.org 强制更新，避免依赖包从pypi下载，速度极慢
 
 
