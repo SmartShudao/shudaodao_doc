@@ -12,6 +12,11 @@
 - 3.清理了 shudaodao_web 工程
   - 引入了 Art Design Pro
   - 执行了 pnpm clean:dev
+- 4.禁止版本控制 secrets/dev.yaml 
+  - 文件 secrets/dev.yaml 不再受源代码管理  
+  - 增加了 secrets/dev.example.yaml 作为样本
+  - 自行复制 dev.example.yaml 到 dev.yaml 然后配置
+
 
 ## 一、开发环境配置
 
