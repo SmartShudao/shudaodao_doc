@@ -2,20 +2,16 @@
 # 数道智融应用产品 说明
 
 ## 注意: shudaodao 版本
-> **v0.1.58**
+> **v0.1.60**
 
-### v0.1.8 关键变化
-- 1.增加了 shudaodao_acm
-  - 表结构初步定型
-- 2.修正 代码生成器 bug 
-  - 过滤了 数据库的 pid 本表指向 id 的约束，它不再会出现在SQLModel类的约束中
-- 3.清理了 shudaodao_web 工程
-  - 引入了 Art Design Pro
-  - 执行了 pnpm clean:dev
-- 4.禁止版本控制 secrets/dev.yaml 
-  - 文件 secrets/dev.yaml 不再受源代码管理  
-  - 增加了 secrets/dev.example.yaml 作为样本
-  - 自行复制 dev.example.yaml 到 dev.yaml 然后配置
+### v0.1.9 关键变化「 shudaodao = v0.1.60 」
+> - 1.代码生成器
+>   - 支持枚举字段
+> - 2.read接口、query接口:list、page、tree
+>   - 支持自动增加枚举字段 _label 结尾
+>   - 枚举字段: enum_code
+>   - 枚举中文: enum_code_label
+
 
 
 ## 一、开发环境配置
@@ -47,18 +43,31 @@ default = true
 
 ## 二、版本更新
 
+### v0.1.8 关键变化「 shudaodao = v0.1.59 」
+> - 1.增加了 shudaodao_acm
+> - 表结构初步定型
+> - 2.修正 代码生成器 bug 
+>   - 过滤了 数据库的 pid 本表指向 id 的约束，它不再会出现在SQLModel类的约束中
+> - 3.清理了 shudaodao_web 工程
+>   - 引入了 Art Design Pro
+>   - 执行了 pnpm clean:dev
+> - 4.禁止版本控制 secrets/dev.yaml 
+>   - 文件 secrets/dev.yaml 不再受源代码管理  
+>   - 增加了 secrets/dev.example.yaml 作为样本
+>   - 自行复制 dev.example.yaml 到 dev.yaml 然后配置
+  
 ### v0.1.7 关键变化
-- 1.支持 refresh_token
-  - 可通过刷新接口 依据 refresh_token 无需登录获取 access_token
-- 2.修正 代码生成器 bug 
-    - 字段（field）同时指定了 default 和 default_factory 参数
-- 3.修正 Application 启动逻辑
-    - 过早的加载了各种Engine
-- 4.修正 Swagger API 文档的资源本地化
+> - 1.支持 refresh_token
+>   - 可通过刷新接口 依据 refresh_token 无需登录获取 access_token
+> - 2.修正 代码生成器 bug 
+>   - 字段（field）同时指定了 default 和 default_factory 参数
+> - 3.修正 Application 启动逻辑
+>   - 过早的加载了各种Engine
+> - 4.修正 Swagger API 文档的资源本地化
 
 ### v0.1.6 关键变化
-
-1.代码生成器,生成的FastAPI路由代码更简洁
+>
+> 1.代码生成器,生成的FastAPI路由代码更简洁
 ```text
 # 为指定的数据模型自动生成标准 CRUD+Q（查询）接口
 # 以下是完整的代码
@@ -76,17 +85,14 @@ TEnumSchema_Router = AuthController.create(
     response_schema=TEnumSchemaResponse,
 )
 ```
-2.增加主要对象类的Google风格文档注释
+> 2.增加主要对象类的Google风格文档注释
 
 ### v0.1.5 关键变化
 
-1.支持多租户
-
-2.query 接口更新 
-
-    新的参数 format : list page tree
-
-    支持 1对多 数据库表的 二级目录查询
+> - 1.支持多租户
+> - 2.query 接口更新 
+>   - 新的参数 format : list page tree
+>   - 支持 1对多 数据库表的 二级目录查询
 
 ```json
 {
@@ -114,22 +120,19 @@ TEnumSchema_Router = AuthController.create(
 
 ### v0.1.5 关键变化
 
-1.开发环境变化
-- 增加组件 "pyjwt>=2.10.1", 用户产品使用授权
-- 优化了代码生成器
-- 更新的模版文件
-
-2.后端API生成器
-- 增加了SQLModel 约束关系的生成
-- 生成 schema_name 目录 __init__.py 文件中多了配置管理
-- 优化 雪花算法ID，后端bigint ,前端 str
-- 优化 日期类字段的支持，前后端保持一致（但没有采用有时区的UTC，出于老库兼容考虑）
-  
-3.增加了产品使用授权功能
-  config 目录 增加了2个文件
-
-    1、许可文件：license.jwt
-    2、公钥文件：public.pem
+> - 1.开发环境变化
+>   - 增加组件 "pyjwt>=2.10.1", 用户产品使用授权
+>   - 优化了代码生成器
+>   - 更新的模版文件
+> - 2.后端API生成器
+>   - 增加了SQLModel 约束关系的生成
+>   - 生成 schema_name 目录 __init__.py 文件中多了配置管理
+>   - 优化 雪花算法ID，后端bigint ,前端 str
+>   - 优化 日期类字段的支持，前后端保持一致（但没有采用有时区的UTC，出于老库兼容考虑）
+> - 3.增加了产品使用授权功能
+>   - config 目录 增加了2个文件
+>   - 许可文件：license.jwt
+>   - 公钥文件：public.pem
 
   目前是开发许可，**60天** 过期，定期更新
 
